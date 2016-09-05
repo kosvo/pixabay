@@ -3,9 +3,42 @@ using System;
 using UIKit;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CoreGraphics;
 
 namespace Pixabay
 {
+	public class CustomImageFlowLayout : UICollectionViewFlowLayout
+
+	{
+		public CustomImageFlowLayout()
+		{
+			SetupLayout();
+		}
+		public override CGSize ItemSize
+		{
+			set
+			{
+
+			}
+			get
+			{
+				float numberOfColumns = 3;
+
+				var itemWidth = (this.CollectionView.Frame.Width - (numberOfColumns - 1)) / numberOfColumns;
+				return new CGSize(itemWidth, itemWidth);
+
+			}
+		}
+		private void SetupLayout()
+		{
+			MinimumInteritemSpacing = 1;
+
+			MinimumLineSpacing = 1;
+
+			ScrollDirection = UICollectionViewScrollDirection.Vertical;
+		}
+
+	}
     public partial class ImagesViewController : UIViewController
     {
 		class ImagesDataSource : UICollectionViewDataSource
@@ -17,14 +50,12 @@ namespace Pixabay
 			}
 			public override UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
 			{
-				var cell = (ImageViewCell)collectionView.DequeueReusableCell(ImageViewCell.Key, indexPath);
+				var cell = (ImageCell)collectionView.DequeueReusableCell("ImageCell", indexPath);
 
-				var image = Images[indexPath.Row];
+				//var image = Images[indexPath.Row];
 
-				Task.Run(async () => { 
-					 cell.Image = await FromUrl(image);
-				});
-
+				cell.Image = UIImage.FromFile("img.png");
+			
 
 				return cell;
 				//return 9;
@@ -32,7 +63,7 @@ namespace Pixabay
 
 			public override nint GetItemsCount(UICollectionView collectionView, nint section)
 			{
-				return Images?.Count ?? 0;
+				return 9;//Images?.Count ?? 0;
 			}
 
 			public static async Task<UIImage> FromUrl(string uri)
@@ -58,7 +89,7 @@ namespace Pixabay
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
-			ImagesCollectionView.RegisterClassForCell(typeof(ImageViewCell), ImageViewCell.Key);
+			ImagesCollectionView.CollectionViewLayout = new CustomImageFlowLayout();
 			ImagesCollectionView.DataSource = new ImagesDataSource(new List<string> { "https://media.giphy.com/media/43h9ZbsC6otlm/giphy.gif" });
 			ImagesCollectionView.ReloadData();                                                      
 		}

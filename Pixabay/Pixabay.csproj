@@ -119,7 +119,6 @@
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
-    <InterfaceDefinition Include="ImageViewCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -137,10 +136,13 @@
     <Compile Include="ImagesViewController.designer.cs">
       <DependentUpon>ImagesViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImageViewCell.cs" />
-    <Compile Include="ImageViewCell.designer.cs">
-      <DependentUpon>ImageViewCell.cs</DependentUpon>
+    <Compile Include="ImageCell.cs" />
+    <Compile Include="ImageCell.designer.cs">
+      <DependentUpon>ImageCell.cs</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="img.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -11,8 +11,8 @@ using UIKit;
 
 namespace Pixabay
 {
-    [Register ("ImageViewCell")]
-    partial class ImageViewCell
+    [Register ("ImageCell")]
+    partial class ImageCell
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
