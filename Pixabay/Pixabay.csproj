@@ -140,6 +140,9 @@
     <Compile Include="ImageCell.designer.cs">
       <DependentUpon>ImageCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Data\Model.cs" />
+    <Compile Include="Data\IImageDataProvider.cs" />
+    <Compile Include="Data\PixabayDataProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="img.png" />
