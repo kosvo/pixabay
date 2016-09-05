@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoreGraphics;
 using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Helpers;
 
 namespace Pixabay
 {
@@ -53,9 +54,20 @@ namespace Pixabay
 			{
 				var cell = (ImageCell)collectionView.DequeueReusableCell("ImageCell", indexPath);
 
-				//var image = Images[indexPath.Row];
+				var image = Images[indexPath.Row];
 
-				cell.Image = UIImage.FromFile("img.png");
+				try
+				{
+					using (var url = new NSUrl(image))
+					using (var data = NSData.FromUrl(url))
+						cell.Image = UIImage.LoadFromData(data);
+				}
+				catch
+				{
+				//	return Task.FromResult(new UIImage());
+				}
+
+				//cell.Image = UIImage.FromFile("img.png");
 			
 
 				return cell;
@@ -64,7 +76,7 @@ namespace Pixabay
 
 			public override nint GetItemsCount(UICollectionView collectionView, nint section)
 			{
-				return 9;//Images?.Count ?? 0;
+				return Images?.Count ?? 0;
 			}
 
 			public static async Task<UIImage> FromUrl(string uri)
@@ -85,14 +97,35 @@ namespace Pixabay
 			}
 		}
 		public ImageViewModel ViewModel => SimpleIoc.Default.GetInstance<ImageViewModel>();
-        public ImagesViewController (IntPtr handle) : base (handle)
+		private List<Binding> bindings = new List<Binding>();
+
+		public ImagesViewController (IntPtr handle) : base (handle)
         {
         }
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
+
+			bindings.Add(searchBar.SetBinding(() => searchBar.Text)
+					 .ObserveSourceEvent<UISearchBarTextChangedEventArgs>("TextChanged")
+						 .WhenSourceChanges(() =>
+						 {
+							 ViewModel.SearchQuery = searchBar.Text;
+						 }));
+			bindings.Add(this.SetBinding(() => ViewModel.Images).WhenSourceChanges(() =>
+		   {
+
+			   //(ImagesCollectionView.DataSource as ImagesDataSource).Images = ViewModel.Images;
+			   if (ImagesCollectionView.DataSource is ImagesDataSource)
+			   {
+				   (ImagesCollectionView.DataSource as ImagesDataSource).Images = ViewModel.Images;
+			   }
+				ImagesCollectionView.ReloadData();
+
+		   }));
+
 			ImagesCollectionView.CollectionViewLayout = new CustomImageFlowLayout();
-			ImagesCollectionView.DataSource = new ImagesDataSource(new List<string> { "https://media.giphy.com/media/43h9ZbsC6otlm/giphy.gif" });
+			ImagesCollectionView.DataSource = new ImagesDataSource(ViewModel.Images);
 			ImagesCollectionView.ReloadData();                                                      
 		}
     }

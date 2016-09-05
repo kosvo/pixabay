@@ -16,11 +16,18 @@ namespace Pixabay
 		private readonly string domain = "https://pixabay.com";
 		public async Task<List<string>> FindImagesAsync(string query)
 		{
-			var encodedQuery = WebUtility.UrlEncode(query);
-			var stream = await new WebClient().OpenReadTaskAsync($"{domain}/api/?key={key}&q={encodedQuery}&image_type={type}");
-			var reader = new StreamReader(stream);
-			var result = JsonConvert.DeserializeObject<PixabayResponse>(await reader.ReadToEndAsync());
-			return result?.hits?.Select(d => d.userImageURL).ToList();
+			try
+			{
+				var encodedQuery = WebUtility.UrlEncode(query);
+				var stream = await new WebClient().OpenReadTaskAsync($"{domain}/api/?key={key}&q={encodedQuery}&image_type={type}");
+				var reader = new StreamReader(stream);
+				var result = JsonConvert.DeserializeObject<PixabayResponse>(await reader.ReadToEndAsync());
+				return result?.hits?.Select(d => d.userImageURL).Take(9).ToList();
+			}
+			catch
+			{
+				return new List<string>();
+			}
 		}
 	}
 }
