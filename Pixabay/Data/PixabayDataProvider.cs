@@ -22,7 +22,7 @@ namespace Pixabay
 				var stream = await new WebClient().OpenReadTaskAsync($"{domain}/api/?key={key}&q={encodedQuery}&image_type={type}");
 				var reader = new StreamReader(stream);
 				var result = JsonConvert.DeserializeObject<PixabayResponse>(await reader.ReadToEndAsync());
-				return result?.hits?.Select(d => d.userImageURL).Take(9).ToList();
+				return result?.hits?.Select(d => d.previewURL).Take(9).ToList();
 			}
 			catch
 			{
