@@ -34,16 +34,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="35" translatesAutoresizingMaskIntoConstraints="NO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" id="35" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                                    <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
-                                        <constraints>
-                                            <constraint id="36" firstItem="35" firstAttribute="trailing" secondItem="30" secondAttribute="trailing"/>
-                                            <constraint id="37" firstItem="35" firstAttribute="top" secondItem="30" secondAttribute="top"/>
-                                            <constraint id="38" firstItem="35" firstAttribute="leading" secondItem="30" secondAttribute="leading"/>
-                                        </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="35" id="name-outlet-35"/>
                                         </connections>
@@ -79,7 +74,4 @@
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="img.png" width="130" height="130"/>
-    </resources>
 </document>

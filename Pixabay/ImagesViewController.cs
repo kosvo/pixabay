@@ -64,14 +64,8 @@ namespace Pixabay
 				}
 				catch
 				{
-				//	return Task.FromResult(new UIImage());
 				}
-
-				//cell.Image = UIImage.FromFile("img.png");
-			
-
 				return cell;
-				//return 9;
 			}
 
 			public override nint GetItemsCount(UICollectionView collectionView, nint section)
@@ -115,7 +109,6 @@ namespace Pixabay
 			bindings.Add(this.SetBinding(() => ViewModel.Images).WhenSourceChanges(() =>
 		   {
 
-			   //(ImagesCollectionView.DataSource as ImagesDataSource).Images = ViewModel.Images;
 			   if (ImagesCollectionView.DataSource is ImagesDataSource)
 			   {
 				   (ImagesCollectionView.DataSource as ImagesDataSource).Images = ViewModel.Images;

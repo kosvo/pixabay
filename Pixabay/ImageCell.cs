@@ -14,7 +14,6 @@ namespace Pixabay
 			set
 			{
 				imageView.Image = value;
-				imageView.BackgroundColor = UIColor.Red;
 			}
 		}
     }
