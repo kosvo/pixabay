@@ -16,10 +16,19 @@ namespace Pixabay
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UICollectionView ImagesCollectionView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UISearchBar searchBar { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
+            if (ImagesCollectionView != null) {
+                ImagesCollectionView.Dispose ();
+                ImagesCollectionView = null;
+            }
+
             if (searchBar != null) {
                 searchBar.Dispose ();
                 searchBar = null;
