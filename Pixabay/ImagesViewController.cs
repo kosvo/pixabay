@@ -4,6 +4,7 @@ using UIKit;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoreGraphics;
+using GalaSoft.MvvmLight.Ioc;
 
 namespace Pixabay
 {
@@ -83,6 +84,7 @@ namespace Pixabay
 			   });
 			}
 		}
+		public ImageViewModel ViewModel => SimpleIoc.Default.GetInstance<ImageViewModel>();
         public ImagesViewController (IntPtr handle) : base (handle)
         {
         }

@@ -143,6 +143,8 @@
     <Compile Include="Data\Model.cs" />
     <Compile Include="Data\IImageDataProvider.cs" />
     <Compile Include="Data\PixabayDataProvider.cs" />
+    <Compile Include="CompositionRoot.cs" />
+    <Compile Include="ImageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="img.png" />

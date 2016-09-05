@@ -9,7 +9,7 @@ namespace Pixabay
 	public class AppDelegate : UIApplicationDelegate
 	{
 		// class-level declarations
-
+		CompositionRoot root;
 		public override UIWindow Window
 		{
 			get;
@@ -20,7 +20,7 @@ namespace Pixabay
 		{
 			// Override point for customization after application launch.
 			// If not required for your application you can safely delete this method
-
+			root = new CompositionRoot();
 			return true;
 		}
 
