@@ -1,8 +1,24 @@
 [{
   "shiftDate": "2017-12-19T00:00:00Z",
   "note": "Bert needs a raise",
-  "travelDetails": [],
-  "workingTime": [],
-  "breakTimeInMinutes": 10,
+  "travelDetails": [
+    {
+      "IsTravelToWork": false,
+      "TravelTimeInMinutes": 1,
+      "TravelDurationInMinutes": 3,
+      "Distance": 2
+    }
+  ],
+  "workingTime": [
+    {
+      "JobName": "1",
+      "JobTimeInMinutes": 3
+    },
+    {
+      "JobName": "2",
+      "JobTimeInMinutes": 6
+    }
+  ],
+  "breakTimeInMinutes": 5,
   "allowances": []
 }]
