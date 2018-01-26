@@ -13,7 +13,7 @@
   ],
   "workingTime": [
     {
-      "JobName": null,
+      "JobName": ,
       "JobTimeInMinutes": 0
     },
     {
@@ -21,7 +21,7 @@
       "JobTimeInMinutes": 0
     }
   ],
-  "breakTimeInMinutes": null,
+  "breakTimeInMinutes": 10,
   "allowances": []
 }
   ]
