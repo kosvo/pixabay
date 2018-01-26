@@ -1,4 +1,6 @@
 {
+  "Queryable": [
+    {
   "shiftDate": "2017-12-19T00:00:00Z",
   "note": "Bert needs a raise",
   "travelDetails": [
@@ -21,4 +23,6 @@
   ],
   "breakTimeInMinutes": null,
   "allowances": []
+}
+  ]
 }
